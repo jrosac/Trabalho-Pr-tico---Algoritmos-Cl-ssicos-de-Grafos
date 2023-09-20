@@ -20,6 +20,14 @@ public class Vertice
         setDistancia(distancia);
 
     }
+    public Vertice(int indice, String rotulo)
+    {
+        setIndice(indice);
+        setRotulo(rotulo);
+        setFlag(false);
+        this.verticesVizinhos = new ArrayList<>();
+        setDistancia(0);
+    }
     public Vertice(int indice, String rotulo, int distancia)
     {
         setIndice(indice);

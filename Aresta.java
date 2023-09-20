@@ -3,18 +3,34 @@ public class Aresta
     private Vertice vertice1;
     private Vertice vertice2;
     private String rotulo;
-
+    private int peso;
     public Aresta(Vertice vertice1, Vertice vertice2)
     {
         setVertice1(vertice1);
         setVertice2(vertice2);
+        setPeso(0);
     }
     public Aresta(Vertice vertice1, Vertice vertice2, String rotulo)
     {
         setVertice1(vertice1);
         setVertice2(vertice2);
         setRotulo(rotulo);
+        setPeso(0);
     }
+    public Aresta(Vertice vertice1, Vertice vertice2, int peso)
+    {
+        setVertice1(vertice1);
+        setVertice2(vertice2);
+        setPeso(peso);
+    }
+    public Aresta(Vertice vertice1, Vertice vertice2, String rotulo, int peso)
+    {
+        setVertice1(vertice1);
+        setVertice2(vertice2);
+        setRotulo(rotulo);
+        setPeso(peso);
+    }
+
 
     public Vertice getVertice1() {
         return vertice1;
@@ -31,6 +47,14 @@ public class Aresta
     }
 
     public void setRotulo(String rotulo) {this.rotulo = rotulo;}
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
 
     public void getAresta(Aresta aresta)
     {

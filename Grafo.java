@@ -25,6 +25,11 @@ public class Grafo {
 
         vertices.add(new Vertice(indice, rotulo, distancia));
     }
+    public void adicionarVertice(int indice, String rotulo) {
+
+        vertices.add(new Vertice(indice, rotulo));
+    }
+
 
 
     public void removerVertice(String rotulo) {
@@ -102,6 +107,16 @@ public class Grafo {
             getVertice(destino).addVerticeVizinho(getVertice(origem));
         }
         arestas.add(new Aresta(getVertice(origem), getVertice(destino), rotulo));
+        numArestas++;
+    }
+    public void adicionarAresta(int origem, int destino, String rotulo, int peso) {
+        if (origem == destino) {
+            getVertice(origem).addVerticeVizinho(getVertice(destino));
+        } else {
+            getVertice(origem).addVerticeVizinho(getVertice(destino));
+            getVertice(destino).addVerticeVizinho(getVertice(origem));
+        }
+        arestas.add(new Aresta(getVertice(origem), getVertice(destino), rotulo, peso));
         numArestas++;
     }
 
@@ -205,17 +220,84 @@ public class Grafo {
             return new Passeio();
         }
     }
+/*
+    public int[] dijkstra(int v, int s) {
 
-    static int[] dijkstra(int v,int s) {
         HashMap<Integer, Vertice> map = new HashMap<>();
-        PriorityQueue<Vertice> q = new PriorityQueue<>();
+        PriorityQueue<Vertice> q = new PriorityQueue<>(Comparator.comparingInt(o ->o.getIndice()));
 
-        map.put(s,new Vertice(s,0));
+        map.put(s, new Vertice(s,0));
         q.add(new Vertice(s,0));
 
         while (!q.isEmpty()) {
-            
+            Vertice vertice = q.poll();
+            int i = vertice.getIndice();
+            int distance = vertice.getDistancia();
+            vertice.setFlag(true);
+
+            List<Vertice> listaAdjunta = getVertice(v).verticesVizinhos();
+
+            for (Vertice vertex : listaAdjunta) {
+                if(!vertex.getFlag()) {
+                    if(!map.containsKey(vertex.getIndice())) {
+                        map.put(vertice.getIndice(), new Vertice(v,distance+vertex.getDistancia()));
+                    }
+                    else {
+                        Vertice sn = map.get(vertex.getIndice());
+                        if (distance + vertex.getDistancia() < sn.getDistancia()) {
+                            sn.setIndice(v);
+                            sn.setDistancia(distance+vertex.getDistancia());
+                        }
+                    }
+                    q.add(new Vertice(vertex.getIndice(),distance+vertex.getDistancia()));
+                }
+            }
+        }
+        int[] result = new int[getNumVertices()];
+        for (int i = 0; i < getNumVertices(); i++) {
+            result[i] = map.get(i).getDistancia();
+        }
+        return result;
+    }
+    static class Pair implements Comparable <Pair> {
+        Vertice vertice;
+        int pesoAteAgora;
+        Pair(Vertice vertice, int peso) {
+            this.vertice = vertice;
+            this.pesoAteAgora = peso;
+        }
+        public int compareTo(Pair o) {
+            return this.pesoAteAgora - o.pesoAteAgora;
         }
     }
+    public void dijkstra(int vertice) {
+
+        PriorityQueue<Pair> prioquie = new PriorityQueue<>();
+        prioquie.add(new Pair(getVertice(vertice),0));
+        while (!prioquie.isEmpty()) {
+            Pair topEle = prioquie.remove();
+            if(topEle.vertice.getFlag()) {
+                continue;
+            }
+            topEle.vertice.setFlag(true);
+            System.out.println("Vertex :" + " " +topEle.vertice.getIndice() + " & " + "Weight so far :" + " " +topEle.pesoAteAgora);
+            for (Aresta aresta : arestas) {
+                if(!aresta.getVertice2().getFlag()) {
+                    prioquie.add(new Pair(aresta.getVertice2(),topEle.pesoAteAgora+aresta.getPeso()));
+                }
+            }
+        }
+
+    }*/
+    /*
+    public void dijkstra(int origem) {
+        int dist[];
+        Set<Vertice> settled = new HashSet<>();
+        PriorityQueue<Vertice> pq = new PriorityQueue<>();
+        for (int i = 1; i <= getNumVertices(); i++) {
+
+        }
+    }*/
+
 
 }
