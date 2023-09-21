@@ -7,17 +7,16 @@ public class Vertice
     private String rotulo;
     private int indice;
     private boolean flag;
+    private List<Integer> distancias;
     private List<Vertice> verticesVizinhos;
-    int distancia;
 
-
-    public Vertice(int indice, int distancia)
+    public Vertice(int indice)
     {
         setIndice(indice);
         setRotulo("v"+indice);
         setFlag(false);
         this.verticesVizinhos = new ArrayList<>();
-        setDistancia(distancia);
+        this.distancias = new ArrayList<>();
 
     }
     public Vertice(int indice, String rotulo)
@@ -26,15 +25,7 @@ public class Vertice
         setRotulo(rotulo);
         setFlag(false);
         this.verticesVizinhos = new ArrayList<>();
-        setDistancia(0);
-    }
-    public Vertice(int indice, String rotulo, int distancia)
-    {
-        setIndice(indice);
-        setRotulo(rotulo);
-        setFlag(false);
-        this.verticesVizinhos = new ArrayList<>();
-        setDistancia(distancia);
+        this.distancias = new ArrayList<>();
     }
     public List<Vertice> verticesVizinhos(){return verticesVizinhos;}
     public String getRotulo() {
@@ -66,18 +57,18 @@ public class Vertice
         return verticesVizinhos.get(i);
     }
 
-    public int getDistancia() {return distancia;}
-
-    public void setDistancia(int distancia) {this.distancia = distancia;}
-
-    public int compareTo(Vertice vertice) {
-        if(getDistancia() <= vertice.getDistancia()) {
-            return -1;
-        }
-        else {
-            return 1;
-        }
+    public boolean addDistancia(int distancia) {
+        return distancias.add(distancia);
     }
+    public boolean addDistancia(int posicao, int distancia) {
+        if(posicao >= 1) {
+            getDistancias().add(posicao-1, distancia);
+            return true;
+        }
+        return false;
+    }
+    public List<Integer> getDistancias() {return distancias;}
+    public void setDistancias(List<Integer> distancias) {this.distancias = distancias;}
     public Vertice getVerticeVizinho(String rotulo) {
         int marcador = -1;
         for (int i = 0; i < verticesVizinhos.size(); i++) {
