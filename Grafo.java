@@ -24,7 +24,6 @@ public class Grafo {
     public void adicionarVertice(int indice, String rotulo) {
 
         vertices.add(new Vertice(indice, rotulo));
-
         for (int i = 0; i < getNumVertices(); i++) {
             getVertice(indice).addDistancia(0);
         }
@@ -46,6 +45,17 @@ public class Grafo {
             }
         }
         return vertices.get(marcador);
+    }
+    public int[][] criarMatrizDePesos() {
+        int matrixDePesos[][] = new int[getNumVertices()][getNumVertices()];
+        for (int linhas = 0; linhas < getNumVertices(); linhas++) {
+            for (int colunas = 0; colunas < getNumVertices(); colunas++) {
+                matrixDePesos[linhas][colunas] = getVertice(linhas+1).getDistancias().get(colunas);
+                System.out.print(matrixDePesos[linhas][colunas] +" ");
+            }
+            System.out.println();
+        }
+        return matrixDePesos;
     }
     public boolean saoVizinhos(int vertice1, int vertice2) {
         for (Vertice vertice : getVertice(vertice1).verticesVizinhos()) {
@@ -109,49 +119,109 @@ public class Grafo {
         }
         System.out.println();
     }
-    public int menorDistancia(int listaDeDeistancias[]) {
-        int min = Integer.MAX_VALUE;
-        int min_index = -1;
-        for (int i = 0; i < getNumVertices(); i++) {
-            if(!getVertice(i+1).getFlag() && listaDeDeistancias[i] <= min) {
-                min = listaDeDeistancias[i];
-                min_index = i;
+    /*
+    public int menorDistancia(int origem) {
+        int menor = Integer.MAX_VALUE;
+        int indice_ListaDeDistancias = -1;
+        List<Integer> listaDeDistacias = getVertice(origem).getDistancias();
+        for(int i = 0; i < listaDeDistacias.size(); i++) {
+            if (!getVertice(i+1).getFlag() && (listaDeDistacias.get(i) != 0) && listaDeDistacias.get(i) < menor) {
+                menor = listaDeDistacias.get(i);
+                indice_ListaDeDistancias = i;
             }
         }
+        return indice_ListaDeDistancias;
+    }
+
+    public void dijkstra(int origem) {
+        int listaDeDistancias[] = new int[getNumVertices()+2];
+
+        for (int i = 0; i < getNumVertices(); i++) {
+            listaDeDistancias[i]=Integer.MAX_VALUE;
+            getVertice(i+1).setFlag(false);
+        }
+        listaDeDistancias[origem] = 0;
+        for (int count = 0; count < getNumVertices(); count++) {
+            int u = menorDistancia();
+        }
+
+    }*/
+    int minDistance(int dist[], Boolean sptSet[])
+    {
+        // Initialize min value
+        int min = Integer.MAX_VALUE, min_index = -1;
+
+        for (int v = 0; v < getNumVertices(); v++)
+            if (sptSet[v] == false && dist[v] <= min) {
+                min = dist[v];
+                min_index = v;
+            }
+
         return min_index;
     }
+
+    // A utility function to print the constructed distance
+    // array
     public void printSolution(int dist[])
     {
         System.out.println(
-                "Vertex  Distance from Source");
+                "Vertex \t\t Distance from Source");
         for (int i = 0; i < getNumVertices(); i++)
-            System.out.println(i + "  " + dist[i]);
+            System.out.println(i + " \t\t " + dist[i]);
     }
-    public void dijkstra(int origem) {
-        int listaDeDistancias[] = new int[getNumVertices()];
 
+    // Function that implements Dijkstra's single source
+    // shortest path algorithm for a graph represented using
+    // adjacency matrix representation
+    public void dijkstra(int graph[][], int src)
+    {
+        int dist[] = new int[getNumVertices()]; // The output array.
+        // dist[i] will hold
+        // the shortest distance from src to i
+
+        // sptSet[i] will true if vertex i is included in
+        // shortest path tree or shortest distance from src
+        // to i is finalized
+        Boolean sptSet[] = new Boolean[getNumVertices()];
+
+        // Initialize all distances as INFINITE and stpSet[]
+        // as false
         for (int i = 0; i < getNumVertices(); i++) {
-            listaDeDistancias[i] = Integer.MAX_VALUE;
-            getVertice(i+1).setFlag(false);
+            dist[i] = Integer.MAX_VALUE;
+            sptSet[i] = false;
         }
-        listaDeDistancias[origem-1] = 0;
-        for (int i = 0; i < getNumVertices()-1; i++) {
 
-            int u = menorDistancia(listaDeDistancias);
-            getVertice(u+1).setFlag(true);
+        // Distance of source vertex from itself is always 0
+        dist[src] = 0;
 
-            for (int v = 0; v < getNumVertices(); v++) {
-                if (!getVertice(v+1).getFlag()
-                    && getVertice(u+1).getDistancias().get(v) != 0
-                    && listaDeDistancias[u] != Integer.MAX_VALUE
-                    && listaDeDistancias[u] + getVertice(u+1).getDistancias().get(v) < listaDeDistancias[u]
-                    ){
-                    listaDeDistancias[v] = listaDeDistancias[u] + getVertice(u+1).getDistancias().get(v);
-                }
-            }
+        // Find shortest path for all vertices
+        for (int count = 0; count < getNumVertices() - 1; count++) {
+            // Pick the minimum distance vertex from the set
+            // of vertices not yet processed. u is always
+            // equal to src in first iteration.
+            int u = minDistance(dist, sptSet);
+
+            // Mark the picked vertex as processed
+            sptSet[u] = true;
+
+            // Update dist value of the adjacent vertices of
+            // the picked vertex.
+            for (int v = 0; v < getNumVertices(); v++)
+
+                // Update dist[v] only if is not in sptSet,
+                // there is an edge from u to v, and total
+                // weight of path from src to v through u is
+                // smaller than current value of dist[v]
+                if (!sptSet[v] && graph[u][v] != 0
+                        && dist[u] != Integer.MAX_VALUE
+                        && dist[u] + graph[u][v] < dist[v])
+                    dist[v] = dist[u] + graph[u][v];
         }
-        printSolution(listaDeDistancias);
+
+        // print the constructed distance array
+        printSolution(dist);
     }
+
 
 
 
