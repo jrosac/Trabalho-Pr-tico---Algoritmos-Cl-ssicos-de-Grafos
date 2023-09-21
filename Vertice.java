@@ -60,9 +60,9 @@ public class Vertice
     public boolean addDistancia(int distancia) {
         return distancias.add(distancia);
     }
-    public boolean addDistancia(int posicao, int distancia) {
+    public boolean setDistancia(int posicao, int distancia) {
         if(posicao >= 1) {
-            getDistancias().add(posicao-1, distancia);
+            getDistancias().set(posicao-1, distancia);
             return true;
         }
         return false;

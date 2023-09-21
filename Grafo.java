@@ -11,12 +11,6 @@ public class Grafo {
         this.numVertices = numVertices;
         arestas = new ArrayList<>();
         vertices = new ArrayList<>();
-
-        for (Vertice vertice : getVertices()) {
-            for (int i = 0; i < getNumVertices(); i++) {
-                vertice.addDistancia(0);
-            }
-        }
     }
 
     public int getNumVertices() {
@@ -30,6 +24,11 @@ public class Grafo {
     public void adicionarVertice(int indice, String rotulo) {
 
         vertices.add(new Vertice(indice, rotulo));
+
+        for (int i = 0; i < getNumVertices(); i++) {
+            getVertice(indice).addDistancia(0);
+        }
+
     }
     public List<Vertice> getVertices() {
         return vertices;
@@ -67,9 +66,9 @@ public class Grafo {
             getVertice(origem).addVerticeVizinho(getVertice(destino));
         } else {
             getVertice(origem).addVerticeVizinho(getVertice(destino));
-            getVertice(origem).addDistancia(destino, peso);
+            getVertice(origem).setDistancia(destino, peso);
             getVertice(destino).addVerticeVizinho(getVertice(origem));
-            getVertice(destino).addDistancia(origem, peso);
+            getVertice(destino).setDistancia(origem, peso);
         }
         arestas.add(new Aresta(getVertice(origem), getVertice(destino), peso));
         numArestas++;
@@ -80,9 +79,9 @@ public class Grafo {
             getVertice(origem).addVerticeVizinho(getVertice(destino));
         } else {
             getVertice(origem).addVerticeVizinho(getVertice(destino));
-            getVertice(origem).addDistancia(destino,peso);
+            getVertice(origem).setDistancia(destino,peso);
             getVertice(destino).addVerticeVizinho(getVertice(origem));
-            getVertice(destino).addDistancia(origem, peso);
+            getVertice(destino).setDistancia(origem, peso);
         }
         arestas.add(new Aresta(getVertice(origem), getVertice(destino), rotulo,peso));
         numArestas++;
@@ -125,7 +124,7 @@ public class Grafo {
     {
         System.out.println(
                 "Vertex  Distance from Source");
-        for (int i = 1; i <= getNumVertices(); i++)
+        for (int i = 0; i < getNumVertices(); i++)
             System.out.println(i + "  " + dist[i]);
     }
     public void dijkstra(int origem) {

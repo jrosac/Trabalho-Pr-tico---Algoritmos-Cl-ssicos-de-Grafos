@@ -12,7 +12,7 @@ public class Main
         grafo1.adicionarVertice(7,"6");
         grafo1.adicionarVertice(8,"7");
         grafo1.adicionarVertice(9,"8");
-/*
+
         grafo1.adicionarAresta(1,2,4);
         grafo1.adicionarAresta(2,3,8);
         grafo1.adicionarAresta(3,4,7);
@@ -28,7 +28,7 @@ public class Main
         grafo1.adicionarAresta(9,7,6);
         grafo1.adicionarAresta(9,3,2);
         grafo1.dijkstra(1);
-*/
+
 
 
 
