@@ -29,7 +29,7 @@ public class Main
         grafo1.adicionarAresta(9,3,2);
 
 
-        dijkstra(grafo1.criarMatrizDePesos(),0);
+        grafo1.dijkstra(grafo1.criarMatrizDePesos(), 0);
 
 
 

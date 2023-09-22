@@ -146,7 +146,7 @@ public class Grafo {
         }
 
     }*/
-    int minDistance(int dist[], Boolean sptSet[])
+    public int minDistance(int dist[], Boolean sptSet[])
     {
         // Initialize min value
         int min = Integer.MAX_VALUE, min_index = -1;
@@ -167,7 +167,7 @@ public class Grafo {
         System.out.println(
                 "Vertex \t\t Distance from Source");
         for (int i = 0; i < getNumVertices(); i++)
-            System.out.println(i + " \t\t " + dist[i]);
+            System.out.println(i+1 + " \t\t " + dist[i]);
     }
 
     // Function that implements Dijkstra's single source
