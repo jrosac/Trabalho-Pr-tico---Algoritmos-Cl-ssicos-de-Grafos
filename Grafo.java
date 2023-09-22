@@ -162,12 +162,12 @@ public class Grafo {
 
     // A utility function to print the constructed distance
     // array
-    public void printSolution(int dist[])
+    public void printSolution(int dist[], int origem)
     {
         System.out.println(
                 "Vertex \t\t Distance from Source");
         for (int i = 0; i < getNumVertices(); i++)
-            System.out.println(i+1 + " \t\t " + dist[i]);
+            System.out.println(origem+"->"+i + " \t\t " + dist[i]);
     }
 
     // Function that implements Dijkstra's single source
@@ -219,7 +219,7 @@ public class Grafo {
         }
 
         // print the constructed distance array
-        printSolution(dist);
+        printSolution(dist,src);
     }
 
 
