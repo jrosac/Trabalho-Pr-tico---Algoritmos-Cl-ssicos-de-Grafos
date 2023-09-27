@@ -104,7 +104,7 @@ public class Grafo {
         System.out.println("Estrutura de dados: \nLista de Adjacencia\n");
 
         for (int x = 0; x < getNumVertices(); x++) {
-            System.out.print("Vertice "+ vertices.get(x).getRotulo() + ": ");
+            System.out.print("Vertice "+ vertices.get(x).getRotulo() + " -> ");
             for (Vertice vertice : vertices.get(x).verticesVizinhos()) {
                 System.out.print(vertice.getRotulo() + " ");
             }
