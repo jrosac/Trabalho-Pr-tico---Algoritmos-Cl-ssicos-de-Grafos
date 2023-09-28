@@ -56,13 +56,13 @@ public class Aresta
         this.peso = peso;
     }
 
-    public void getAresta(Aresta aresta)
+    public void getAresta()
     {
         if(rotulo == null) {
-            System.out.println("("+aresta.getVertice1().getRotulo()+"-"+aresta.getVertice2().getRotulo()+")");
+            System.out.println(getRotulo()+" "+"("+getVertice1().getRotulo()+" - "+getVertice2().getRotulo()+")"+" Dist: "+getPeso()+"km");
         }
         else{
-            System.out.println(aresta.getRotulo()+" "+"("+aresta.getVertice1().getRotulo()+"-"+aresta.getVertice2().getRotulo()+")");
+            System.out.println(getRotulo()+" "+"("+getVertice1().getRotulo()+" - "+getVertice2().getRotulo()+")"+" Dist: "+getPeso()+"km");
         }
 
     }

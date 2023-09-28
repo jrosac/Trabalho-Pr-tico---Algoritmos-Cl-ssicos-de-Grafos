@@ -66,11 +66,6 @@ public class Grafo {
         return false;
     }
 
-    public void imprimirVertice(int i) {
-        System.out.println(getVertices().get(i-1).getIndice());
-        System.out.println(getVertices().get(i-1).getRotulo());
-    }
-
     public void adicionarAresta(int origem, int destino, int peso) {
         if (origem == destino) {
             getVertice(origem).addVerticeVizinho(getVertice(destino));
@@ -114,38 +109,11 @@ public class Grafo {
         if (numArestas > 0) {
             System.out.println("\nArestas: ");
             for (Aresta aresta : arestas) {
-                aresta.getAresta(aresta);
+                aresta.getAresta();
             }
         }
         System.out.println();
     }
-    /*
-    public int menorDistancia(int origem) {
-        int menor = Integer.MAX_VALUE;
-        int indice_ListaDeDistancias = -1;
-        List<Integer> listaDeDistacias = getVertice(origem).getDistancias();
-        for(int i = 0; i < listaDeDistacias.size(); i++) {
-            if (!getVertice(i+1).getFlag() && (listaDeDistacias.get(i) != 0) && listaDeDistacias.get(i) < menor) {
-                menor = listaDeDistacias.get(i);
-                indice_ListaDeDistancias = i;
-            }
-        }
-        return indice_ListaDeDistancias;
-    }
-
-    public void dijkstra(int origem) {
-        int listaDeDistancias[] = new int[getNumVertices()+2];
-
-        for (int i = 0; i < getNumVertices(); i++) {
-            listaDeDistancias[i]=Integer.MAX_VALUE;
-            getVertice(i+1).setFlag(false);
-        }
-        listaDeDistancias[origem] = 0;
-        for (int count = 0; count < getNumVertices(); count++) {
-            int u = menorDistancia();
-        }
-
-    }*/
     public int minDistance(int dist[], Boolean sptSet[])
     {
         // Initialize min value
@@ -162,12 +130,22 @@ public class Grafo {
 
     // A utility function to print the constructed distance
     // array
-    public void printSolution(int dist[], int origem)
-    {
+    public void printadorCidade(int j) {
+            System.out.printf("%s  %-14s",getVertice(1).getCidade(), getVertice(j + 1).getCidade());
+    }
+    public void printSolution(int dist[], int origem) {
         System.out.println(
-                "Vertex \t\t Distance from Source");
-        for (int i = 0; i < getNumVertices(); i++)
-            System.out.println(origem+"->"+i + " \t\t " + dist[i]);
+                "Vertice  Distancia da Origem");
+        int j = 0;
+        for (int i = 0; i < getNumVertices(); i++) {
+
+            printadorCidade(j);
+            System.out.print("  " + dist[i]);
+            System.out.println();
+            if (i < getNumVertices() - 1) {
+                j++;
+            }
+        }
     }
 
     // Function that implements Dijkstra's single source

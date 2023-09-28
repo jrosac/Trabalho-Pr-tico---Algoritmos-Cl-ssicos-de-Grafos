@@ -31,6 +31,14 @@ public class Vertice
     public String getRotulo() {
         return rotulo;
     }
+    public String getCidade() {
+        if (rotulo.contains(" ") && rotulo.length()>17) {
+            return rotulo.split(" ")[0];
+        }
+        else {
+            return rotulo.substring(0, rotulo.length()-3);
+        }
+    }
     public void setRotulo(String rotulo) {
         this.rotulo = rotulo;
     }
