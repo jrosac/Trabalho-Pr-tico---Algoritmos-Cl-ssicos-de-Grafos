@@ -128,8 +128,8 @@ public class Grafo {
 
     // A utility function to print the constructed distance
     // array
-    public void printadorCidade(int j) {
-            System.out.printf("%s  %-24s",getVertice(1).getCidade(), getVertice(j + 1).getCidade());
+    public void printadorCidade(int j, int origem) {
+            System.out.printf("%s  %-24s",getVertice(origem).getCidade(), getVertice(j + 1).getCidade());
     }
     public void printSolution(int dist[], int origem) {
         System.out.println(
@@ -137,7 +137,7 @@ public class Grafo {
         int j = 0;
         for (int i = 0; i < getNumVertices(); i++) {
 
-            printadorCidade(j);
+            printadorCidade(j, origem);
             System.out.print("  " + dist[i]);
             System.out.println();
             if (i < getNumVertices() - 1) {
@@ -194,7 +194,7 @@ public class Grafo {
         }
 
         // imprima o array de distância construído
-        printSolution(dist, origem);
+        printSolution(dist, origem+1);
     }
 
 
