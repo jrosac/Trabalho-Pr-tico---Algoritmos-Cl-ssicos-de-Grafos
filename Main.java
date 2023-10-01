@@ -60,24 +60,26 @@ public class Main
         grafo1.adicionarVertice(53, "Brasilia,DF");                 // 27
         grafo1.adicionarVertice(54, "Vitoria da Conquista,BA");     // 2
 
-        grafo1.adicionarAresta(1, 2, 196);  // Aracaju 1 - Caninde de Sao Francisco 2
+        grafo1.adicionarAresta(1, 2, 190);  // Aracaju 1 - Caninde de Sao Francisco 2
         grafo1.adicionarAresta(1, 3, 320); // Aracaju 1 - Salvador 3
         grafo1.adicionarAresta(1, 5, 270); // Aracaju 1 - Maceio 5
         grafo1.adicionarAresta(2, 4, 380); // Caninde de Sao Francisco 2 - Feira de Santana 4
+        grafo1.adicionarAresta(2, 14, 440); // Caninde de Sao Francisco 2 - Juazeiro do Norte 14
         grafo1.adicionarAresta(3, 4, 116); // Salvador 3 - Feira de Santana 4
         grafo1.adicionarAresta(3, 54, 510); // Salvador 3 - Vitoria da Conquista 54
         grafo1.adicionarAresta(5, 6, 120); // Maceio 5 - Maragogi 6
         grafo1.adicionarAresta(6, 7, 130); // Maragogi 6 - Recife 7
         grafo1.adicionarAresta(7, 9, 200); // Recife 7 - Campina Grande 9
-        grafo1.adicionarAresta(2, 8, 381); // Caninde de Sao Francisco 2 - Petrolina 8
-        grafo1.adicionarAresta(9, 10, 127); // Campina Grande 9 - Joao Pessoa 10
-        grafo1.adicionarAresta(10, 11, 181); // Joao Pessoa 10 - Natal 11
-        grafo1.adicionarAresta(11, 12, 282); // Natal 11 - Mossoro 12
-        grafo1.adicionarAresta(12, 13, 238); // Mossoro 12 - Fortaleza 13
-        grafo1.adicionarAresta(13, 14, 493); // Fortaleza 13 - Juazeiro do Norte 14
+        grafo1.adicionarAresta(2, 8, 380); // Caninde de Sao Francisco 2 - Petrolina 8
+        grafo1.adicionarAresta(9, 10, 120); // Campina Grande 9 - Joao Pessoa 10
+        grafo1.adicionarAresta(10, 11, 180); // Joao Pessoa 10 - Natal 11
+        grafo1.adicionarAresta(11, 12, 280); // Natal 11 - Mossoro 12
+        grafo1.adicionarAresta(12, 13, 230); // Mossoro 12 - Fortaleza 13
+        grafo1.adicionarAresta(13, 14, 490); // Fortaleza 13 - Juazeiro do Norte 14
         grafo1.adicionarAresta(14, 15, 590); // Juazeiro do Norte 14 - Teresina 15
         grafo1.adicionarAresta(15, 16, 338); // Teresina 15 - Parnaiba 16
         grafo1.adicionarAresta(15, 18, 570); // Teresina 15 - Balsas 18
+        grafo1.adicionarAresta(8, 18, 910); // Petrolina 8 - Balsas 18
         grafo1.adicionarAresta(16, 17, 440); // Parnaiba 16 - Sao Luis 17
         grafo1.adicionarAresta(17, 15, 430); // Sao Luis 17 - Teresina 15
         grafo1.adicionarAresta(18, 20, 280); // Balsas 18 - Araguaina 20
