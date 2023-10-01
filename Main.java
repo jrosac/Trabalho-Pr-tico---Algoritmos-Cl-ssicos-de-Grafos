@@ -3,7 +3,7 @@ import java.security.interfaces.RSAKey;
 public class Main
 {
     public static void main(String[] args) {
-        Grafo grafo1 = new Grafo(54);
+        Grafo grafo1 = new Grafo(55);
 
         grafo1.adicionarVertice(1, "Aracaju,SE");                   // 1
         grafo1.adicionarVertice(2, "Caninde de Sao Francisco,SE");  // 1
@@ -59,6 +59,8 @@ public class Main
         grafo1.adicionarVertice(52, "Santarem,PA");                 // 26
         grafo1.adicionarVertice(53, "Brasilia,DF");                 // 27
         grafo1.adicionarVertice(54, "Vitoria da Conquista,BA");     // 2
+        grafo1.adicionarVertice(55, "Montes Claros,MG");            // 12
+
 
         grafo1.adicionarAresta(1, 2, 190);  // Aracaju 1 - Caninde de Sao Francisco 2
         grafo1.adicionarAresta(1, 3, 320); // Aracaju 1 - Salvador 3
@@ -67,6 +69,9 @@ public class Main
         grafo1.adicionarAresta(2, 14, 440); // Caninde de Sao Francisco 2 - Juazeiro do Norte 14
         grafo1.adicionarAresta(3, 4, 116); // Salvador 3 - Feira de Santana 4
         grafo1.adicionarAresta(3, 54, 510); // Salvador 3 - Vitoria da Conquista 54
+        grafo1.adicionarAresta(4, 54, 400); // Feira de Santana 4 - Vitoria da Conquista 54
+        grafo1.adicionarAresta(54, 26, 710); // Vitoria da Conquista 54 - Linhares 26
+        grafo1.adicionarAresta(54, 55, 460); // Vitoria da Conquista 54 - Montes Claros 55
         grafo1.adicionarAresta(5, 6, 120); // Maceio 5 - Maragogi 6
         grafo1.adicionarAresta(6, 7, 130); // Maragogi 6 - Recife 7
         grafo1.adicionarAresta(7, 9, 200); // Recife 7 - Campina Grande 9
@@ -77,7 +82,7 @@ public class Main
         grafo1.adicionarAresta(12, 13, 230); // Mossoro 12 - Fortaleza 13
         grafo1.adicionarAresta(13, 14, 490); // Fortaleza 13 - Juazeiro do Norte 14
         grafo1.adicionarAresta(14, 15, 590); // Juazeiro do Norte 14 - Teresina 15
-        grafo1.adicionarAresta(15, 16, 338); // Teresina 15 - Parnaiba 16
+        grafo1.adicionarAresta(15, 16, 330); // Teresina 15 - Parnaiba 16
         grafo1.adicionarAresta(15, 18, 570); // Teresina 15 - Balsas 18
         grafo1.adicionarAresta(8, 18, 910); // Petrolina 8 - Balsas 18
         grafo1.adicionarAresta(16, 17, 440); // Parnaiba 16 - Sao Luis 17
@@ -87,16 +92,22 @@ public class Main
         grafo1.adicionarAresta(19, 21, 820); // Palmas 19 - Goiania 21
         grafo1.adicionarAresta(21, 22, 230); // Goiania 21 - Rio Verde 22
         grafo1.adicionarAresta(23, 25, 510); // Belo Horizonte 23 - Vitoria 25
-        grafo1.adicionarAresta(23, 54, 830); // Belo Horizonte 23 - Vitoria da Conquista 54
+        grafo1.adicionarAresta(23, 55, 420); // Montes Claros 55 - Belo Horizonte 23
+        grafo1.adicionarAresta(55, 30, 900); // Montes Claros 55 - Sao Carlos 30
+        grafo1.adicionarAresta(32, 30, 500); // Sao Carlos 30 - Maringa 32
+        grafo1.adicionarAresta(33, 30, 900); // Sao Carlos 30 - Chapeco 33
         grafo1.adicionarAresta(22, 37, 610); // Rio Verde 22 - Campo Grande 37
         grafo1.adicionarAresta(23, 24, 440); // Belo Horizonte 23 - Pocos de Caldas 24
+        grafo1.adicionarAresta(24, 29, 250); // Sao Paulo 29 - Pocos de Caldas 24
         grafo1.adicionarAresta(25, 26, 130); // Vitoria 25 - Linhares 26
         grafo1.adicionarAresta(26, 27, 340); // Linhares 26 - Rio de Janeiro 27
         grafo1.adicionarAresta(27, 28, 150); // Rio de Janeiro 27 - Cabo Frio 28
         grafo1.adicionarAresta(28, 29, 570); // Cabo Frio 28 - Sao Paulo 29
         grafo1.adicionarAresta(29, 30, 230); // Sao Paulo 29 - Sao Carlos 30
+        grafo1.adicionarAresta(29, 31, 400); // Sao Paulo 29 - Curitiba 31
         grafo1.adicionarAresta(30, 31, 540); // Sao Carlos 30 - Curitiba 31
         grafo1.adicionarAresta(31, 32, 420); // Curitiba 31 - Maringa 32
+        grafo1.adicionarAresta(31, 34, 300); // Curitiba 31 - Florianopolis 34
         grafo1.adicionarAresta(32, 33, 610); // Maringa 32 - Chapeco 33
         grafo1.adicionarAresta(33, 34, 550); // Chapeco 33 - Florianopolis 34
         grafo1.adicionarAresta(34, 35, 460); // Florianopolis 34 - Porto Alegre 35
@@ -120,7 +131,8 @@ public class Main
         grafo1.adicionarAresta(20, 52, 1180); // Araguaina 20 - Santarem 52
         grafo1.adicionarAresta(21, 53,  200);  // Goiania 21 - Brasilia 53
         grafo1.adicionarAresta(22, 39,  700);  // Rio Verde 22 - Cuiaba 39
-        grafo1.adicionarAresta(4, 53, 1320); // Feira de Santana 4 - Brasilia 53
+        grafo1.adicionarAresta(55, 53, 580); // Montes Claros 55 - Brasilia 53
+
         grafo1.dijkstra(grafo1.criarMatrizDePesos(), 0);
         grafo1.imprimirGrafo();
 

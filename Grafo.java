@@ -131,7 +131,7 @@ public class Grafo {
     // A utility function to print the constructed distance
     // array
     public void printadorCidade(int j) {
-            System.out.printf("%s  %-14s",getVertice(1).getCidade(), getVertice(j + 1).getCidade());
+            System.out.printf("%s  %-24s",getVertice(1).getCidade(), getVertice(j + 1).getCidade());
     }
     public void printSolution(int dist[], int origem) {
         System.out.println(
