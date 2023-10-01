@@ -59,10 +59,10 @@ public class Aresta
     public void getAresta()
     {
         if(rotulo == null) {
-            System.out.println(getRotulo()+" "+"("+getVertice1().getRotulo()+" - "+getVertice2().getRotulo()+")"+" Dist: "+getPeso()+"km");
+            System.out.println("("+getVertice1().getRotulo()+" - "+getVertice2().getRotulo()+")"+" Dist: "+getPeso()+"km");
         }
         else{
-            System.out.println(getRotulo()+" "+"("+getVertice1().getRotulo()+" - "+getVertice2().getRotulo()+")"+" Dist: "+getPeso()+"km");
+            System.out.println("("+getVertice1().getRotulo()+" - "+getVertice2().getRotulo()+")"+" Dist: "+getPeso()+"km");
         }
 
     }

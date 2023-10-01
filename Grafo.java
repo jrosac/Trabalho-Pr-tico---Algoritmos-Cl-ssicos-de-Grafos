@@ -51,9 +51,7 @@ public class Grafo {
         for (int linhas = 0; linhas < getNumVertices(); linhas++) {
             for (int colunas = 0; colunas < getNumVertices(); colunas++) {
                 matrixDePesos[linhas][colunas] = getVertice(linhas+1).getDistancias().get(colunas);
-                System.out.print(matrixDePesos[linhas][colunas] +" ");
             }
-            System.out.println();
         }
         return matrixDePesos;
     }
@@ -93,21 +91,21 @@ public class Grafo {
     }
     
     public void imprimirGrafo() {
-        System.out.println("Numero de vertices: " + getNumVertices());
+        System.out.println("\nNumero de vertices: " + getNumVertices());
         System.out.println("Numero de arestas: " + getNumArestas() + "\n");
 
-        System.out.println("Estrutura de dados: \nLista de Adjacencia\n");
+        System.out.println("Estrutura de dados: \n\nLista de Adjacencia");
 
         for (int x = 0; x < getNumVertices(); x++) {
-            System.out.print("Vertice "+ vertices.get(x).getRotulo() + " -> ");
+            System.out.print(vertices.get(x).getRotulo() + " -> ");
             for (Vertice vertice : vertices.get(x).verticesVizinhos()) {
-                System.out.print(vertice.getRotulo() + " ");
+                System.out.print(vertice.getRotulo() + "  ");
             }
 
             System.out.println();
         }
         if (numArestas > 0) {
-            System.out.println("\nArestas: ");
+            System.out.println("\nLista de Distancias: ");
             for (Aresta aresta : arestas) {
                 aresta.getAresta();
             }
@@ -148,58 +146,56 @@ public class Grafo {
         }
     }
 
-    // Function that implements Dijkstra's single source
-    // shortest path algorithm for a graph represented using
-    // adjacency matrix representation
-    public void dijkstra(int graph[][], int src)
+    // Função que implementa o algoritmo de caminho mais curto de Dijkstra para um grafo representado usando
+// representação de matriz de adjacência
+    public void dijkstra(int grafo[][], int origem)
     {
-        int dist[] = new int[getNumVertices()]; // The output array.
-        // dist[i] will hold
-        // the shortest distance from src to i
+        int dist[] = new int[getNumVertices()]; // O array de saída.
+        // dist[i] conterá
+        // a distância mais curta de origem até i
 
-        // sptSet[i] will true if vertex i is included in
-        // shortest path tree or shortest distance from src
-        // to i is finalized
+        // sptSet[i] será verdadeiro se o vértice i estiver incluído em
+        // na árvore de caminho mais curto ou a distância mais curta de origem
+        // até i estiver finalizada
         Boolean sptSet[] = new Boolean[getNumVertices()];
 
-        // Initialize all distances as INFINITE and stpSet[]
-        // as false
+        // Inicialize todas as distâncias como INFINITO e stpSet[]
+        // como falso
         for (int i = 0; i < getNumVertices(); i++) {
             dist[i] = Integer.MAX_VALUE;
             sptSet[i] = false;
         }
 
-        // Distance of source vertex from itself is always 0
-        dist[src] = 0;
+        // A distância do vértice de origem para ele mesmo é sempre 0
+        dist[origem] = 0;
 
-        // Find shortest path for all vertices
+        // Encontre o caminho mais curto para todos os vértices
         for (int count = 0; count < getNumVertices() - 1; count++) {
-            // Pick the minimum distance vertex from the set
-            // of vertices not yet processed. u is always
-            // equal to src in first iteration.
+            // Escolha o vértice com a distância mínima do conjunto
+            // de vértices ainda não processados.
+            // u é sempre igual a origem na primeira iteração.
             int u = minDistance(dist, sptSet);
 
-            // Mark the picked vertex as processed
+            // Marque o vértice escolhido como processado
             sptSet[u] = true;
 
-            // Update dist value of the adjacent vertices of
-            // the picked vertex.
+            // Atualize o valor de dist dos vértices adjacentes ao
+            // vértice escolhido.
             for (int v = 0; v < getNumVertices(); v++)
 
-                // Update dist[v] only if is not in sptSet,
-                // there is an edge from u to v, and total
-                // weight of path from src to v through u is
-                // smaller than current value of dist[v]
-                if (!sptSet[v] && graph[u][v] != 0
+                // Atualize dist[v] apenas se ele não estiver em sptSet,
+                // houver uma aresta de u para v, e o peso total
+                // do caminho de origem para v passando por u for
+                // menor que o valor atual de dist[v]
+                if (!sptSet[v] && grafo[u][v] != 0
                         && dist[u] != Integer.MAX_VALUE
-                        && dist[u] + graph[u][v] < dist[v])
-                    dist[v] = dist[u] + graph[u][v];
+                        && dist[u] + grafo[u][v] < dist[v])
+                    dist[v] = dist[u] + grafo[u][v];
         }
 
-        // print the constructed distance array
-        printSolution(dist,src);
+        // imprima o array de distância construído
+        printSolution(dist, origem);
     }
-
 
 
 
