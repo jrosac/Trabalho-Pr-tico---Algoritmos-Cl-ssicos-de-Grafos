@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class Grafo {
-    private int numVertices;
+    private final int numVertices;
     private int numArestas;
-    private List<Vertice> vertices;
-    private List<Aresta> arestas;
+    private final List<Vertice> vertices;
+    private final List<Aresta> arestas;
 
     public Grafo(int numVertices) {
         this.numArestas = 0;
@@ -29,39 +29,19 @@ public class Grafo {
         }
 
     }
-    public List<Vertice> getVertices() {
-        return vertices;
-    }
 
     public Vertice getVertice(int i) {
         return vertices.get(i - 1);
     }
 
-    public Vertice getVertice(String rotulo) {
-        int marcador = -1;
-        for (int i = 0; i < getNumVertices(); i++) {
-            if (Objects.equals(vertices.get(i).getRotulo(), rotulo)) {
-                marcador = i;
-            }
-        }
-        return vertices.get(marcador);
-    }
     public int[][] criarMatrizDePesos() {
-        int matrixDePesos[][] = new int[getNumVertices()][getNumVertices()];
+        int[][] matrixDePesos = new int[getNumVertices()][getNumVertices()];
         for (int linhas = 0; linhas < getNumVertices(); linhas++) {
             for (int colunas = 0; colunas < getNumVertices(); colunas++) {
                 matrixDePesos[linhas][colunas] = getVertice(linhas+1).getDistancias().get(colunas);
             }
         }
         return matrixDePesos;
-    }
-    public boolean saoVizinhos(int vertice1, int vertice2) {
-        for (Vertice vertice : getVertice(vertice1).verticesVizinhos()) {
-            if(vertice.getIndice() == vertice2) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void adicionarAresta(int origem, int destino, int peso) {
@@ -112,13 +92,13 @@ public class Grafo {
         }
         System.out.println();
     }
-    public int minDistance(int dist[], Boolean sptSet[])
+    public int minDistance(int[] dist, Boolean[] sptSet)
     {
         // Initialize min value
         int min = Integer.MAX_VALUE, min_index = -1;
 
         for (int v = 0; v < getNumVertices(); v++)
-            if (sptSet[v] == false && dist[v] <= min) {
+            if (!sptSet[v] && dist[v] <= min) {
                 min = dist[v];
                 min_index = v;
             }
@@ -131,7 +111,7 @@ public class Grafo {
     public void printadorCidade(int j, int origem) {
             System.out.printf("%s  %-24s",getVertice(origem).getCidade(), getVertice(j + 1).getCidade());
     }
-    public void printSolution(int dist[], int origem) {
+    public void printSolution(int[] dist, int origem) {
         System.out.println(
                 "Vertice  Distancia da Origem");
         int j = 0;
@@ -148,16 +128,16 @@ public class Grafo {
 
     // Função que implementa o algoritmo de caminho mais curto de Dijkstra para um grafo representado usando
 // representação de matriz de adjacência
-    public void dijkstra(int grafo[][], int origem)
+    public void dijkstra(int[][] grafo, int origem)
     {
-        int dist[] = new int[getNumVertices()]; // O array de saída.
+        int[] dist = new int[getNumVertices()]; // O array de saída.
         // dist[i] conterá
         // a distância mais curta de origem até i
 
         // sptSet[i] será verdadeiro se o vértice i estiver incluído em
         // na árvore de caminho mais curto ou a distância mais curta de origem
         // até i estiver finalizada
-        Boolean sptSet[] = new Boolean[getNumVertices()];
+        Boolean[] sptSet = new Boolean[getNumVertices()];
 
         // Inicialize todas as distâncias como INFINITO e stpSet[]
         // como falso
