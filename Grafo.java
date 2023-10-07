@@ -164,15 +164,14 @@ public class Grafo {
             for (int v = 0; v < getNumVertices(); v++)
 
                 // Atualize dist[v] apenas se ele não estiver em sptSet,
-                // houver uma aresta de u para v, e o peso total
+                // se houver uma aresta de u para v e o peso total
                 // do caminho de origem para v passando por u for
                 // menor que o valor atual de dist[v]
-                if (!sptSet[v] && grafo[u][v] != 0
-                        && dist[u] != Integer.MAX_VALUE
-                        && dist[u] + grafo[u][v] < dist[v])
+                if (!sptSet[v] && grafo[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + grafo[u][v] < dist[v]) {
                     dist[v] = dist[u] + grafo[u][v];
-        }
+                }
 
+        }
         // imprima o array de distância construído
         printSolution(dist, origem+1);
     }
